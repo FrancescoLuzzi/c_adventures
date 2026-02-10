@@ -1,6 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -g
 
+INCLUDES = -I.
+
 # Source files
 APP_SRC = example/main.c
 
@@ -11,8 +13,8 @@ APP_TARGET = example/main
 
 all: $(APP_TARGET)
 
-$(APP_TARGET): $(APP_SRC) array.h
-	$(CC) $(CFLAGS) -o $(APP_TARGET) $(APP_SRC) $(LIB_SRC)
+$(APP_TARGET): $(APP_SRC) array.h sort.h
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(APP_TARGET) $(APP_SRC) $(LIB_SRC)
 
 run: all
 	./$(APP_TARGET)

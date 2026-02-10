@@ -31,6 +31,8 @@ array_header_t* array_header(const void* array);
 
 size_t array_size(void* array);
 
+size_t array_element_size(void* array);
+
 size_t array_capacity(void* array);
 
 size_t array_increase_len(void* array);
@@ -54,7 +56,7 @@ void* array_init(size_t element_size, size_t min_elements);
     body\
 }
 
-#ifdef ARRAY_H_IMPLEMENTATION
+#ifdef ARRAY_H_IMPLEMENTATION_
 
 array_header_t* array_header(const void* array){
     return (array_header_t *)(array)-1;
@@ -63,6 +65,11 @@ array_header_t* array_header(const void* array){
 size_t array_size(void* array){
     array_header_t* header = array_header(array);
     return header->size;
+}
+
+size_t array_element_size(void* array){
+    array_header_t* header = array_header(array);
+    return header->element_size;
 }
 
 size_t array_capacity(void* array){
