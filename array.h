@@ -51,10 +51,9 @@ void* array_init(size_t element_size, size_t min_elements);
 #define array_push(arr, element) (array_expand((void**)&arr) ? arr[array_increase_len(arr)] = element , true : false)
 #define array_pop_back(arr) arr[array_decrease_len(arr)]
 #define array_get_ref_at(arr,i) i<array_size(arr) ? &arr[i] : NULL
-#define array_iter(arr,var_def,body) for(size_t i = 0; i<array_size(arr); i++){\
-    var_def = array_get_ref_at(arr,i);\
-    body\
-}
+#define array_iter(arr,T,name) for(size_t __i = 0; __i<array_size(arr); __i++)\
+    for(T* name = array_get_ref_at(arr,__i); name; name = NULL)
+
 
 #ifdef ARRAY_H_IMPLEMENTATION_
 

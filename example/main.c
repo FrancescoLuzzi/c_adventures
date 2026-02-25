@@ -6,7 +6,7 @@
 
 typedef struct {
     size_t element_a;
-    ssize_t element_b;
+    size_t element_b;
     size_t element_c;
 }test_struct_t;
 
@@ -23,8 +23,8 @@ void print_vec_test_struct_t(test_struct_t *vec, size_t size){
 }
 
 int cmp_struct(void *a, void *b){
-    ssize_t tmp_a = ((test_struct_t*) a)->element_b;
-    ssize_t tmp_b = ((test_struct_t*) b)->element_b;
+    size_t tmp_a = ((test_struct_t*) a)->element_b;
+    size_t tmp_b = ((test_struct_t*) b)->element_b;
     if (tmp_a == tmp_b){
         return 0;
     }
@@ -48,13 +48,9 @@ int main(){
             break;
         }
     }
-    array_iter(
-        arr,
-        test_struct_t* el,
-        {
-            print_test_struct_t(el);
-        }
-    );
+    array_iter(arr, test_struct_t, el) {
+        print_test_struct_t(el);
+    }
 
     printf("%zu\n",array_capacity(arr));
     printf("%zu\n",array_size(arr));
